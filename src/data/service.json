@@ -1,0 +1,23 @@
+ [
+  {
+    "icon": "MdChildCare",
+    "color": "bg-rose-100 text-rose-600 dark:bg-rose-950 dark:text-rose-400",
+    "title": "Newborn & Baby Care",
+    "desc": "Night nannies, full-time nannies, developmental specialists",
+    "price": "From $28/hr"
+  },
+  {
+    "icon": "MdElderly",
+    "color": "bg-emerald-100 text-emerald-600 dark:bg-emerald-950 dark:text-emerald-400",
+    "title": "Senior & Elderly Care",
+    "desc": "Companion care, dementia support, mobility assistance",
+    "price": "From $26/hr"
+  },
+  {
+    "icon": "MdMedicalServices",
+    "color": "bg-blue-100 text-blue-600 dark:bg-blue-950 dark:text-blue-400",
+    "title": "Post-Surgery & Recovery",
+    "desc": "Licensed nurses, physical therapy support, medication help",
+    "price": "From $35/hr"
+  }
+]
