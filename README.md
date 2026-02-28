@@ -1,177 +1,163 @@
-care-xyz/
-│
-├── public/
-│   ├── images/
-│   │   ├── hero.jpg
-│   │   ├── baby-care.jpg
-│   │   ├── elderly-care.jpg
-│   │   └── sick-care.jpg
-│   ├── icons/
-│   └── logo.svg
-│
-├── src/
-│
-│   ├── app/
-│   │
-│   │   ├── layout.tsx
-│   │   ├── page.tsx                    # Homepage
-│   │   ├── not-found.tsx               # 404 Page
-│   │   ├── loading.tsx
-│   │
-│   │   ├── service/
-│   │   │   └── [serviceId]/
-│   │   │       ├── page.tsx
-│   │   │       ├── loading.tsx
-│   │   │       └── metadata.ts
-│   │
-│   │   ├── booking/
-│   │   │   └── [serviceId]/
-│   │   │       ├── page.tsx            # Private
-│   │   │       └── loading.tsx
-│   │
-│   │   ├── my-bookings/
-│   │   │   └── page.tsx                # Private
-│   │
-│   │   ├── dashboard/                  # USER DASHBOARD
-│   │   │   ├── layout.tsx
-│   │   │   ├── page.tsx
-│   │   │   ├── my-bookings/
-│   │   │   │   └── page.tsx
-│   │   │   ├── payments/
-│   │   │   │   └── page.tsx
-│   │   │   ├── profile/
-│   │   │   │   └── page.tsx
-│   │   │   └── settings/
-│   │   │       └── page.tsx
-│   │
-│   │   ├── admin/                      # ADMIN DASHBOARD
-│   │   │   ├── layout.tsx
-│   │   │   ├── page.tsx
-│   │   │   ├── users/
-│   │   │   │   └── page.tsx
-│   │   │   ├── bookings/
-│   │   │   │   └── page.tsx
-│   │   │   ├── payments/
-│   │   │   │   └── page.tsx
-│   │   │   └── services/
-│   │   │       └── page.tsx
-│   │
-│   │   ├── login/
-│   │   │   └── page.tsx
-│   │
-│   │   ├── register/
-│   │   │   └── page.tsx
-│   │
-│   │   └── api/
-│   │       ├── auth/
-│   │       │   └── [...nextauth]/route.ts
-│   │       │
-│   │       ├── bookings/
-│   │       │   ├── route.ts
-│   │       │   └── [id]/route.ts
-│   │       │
-│   │       ├── payments/
-│   │       │   ├── stripe-session/route.ts
-│   │       │   └── webhook/route.ts
-│   │       │
-│   │       ├── services/
-│   │       │   └── route.ts
-│   │       │
-│   │       ├── users/
-│   │       │   └── route.ts
-│   │       │
-│   │       └── send-invoice/
-│   │           └── route.ts
-│
-│   ├── components/
-│   │
-│   │   ├── layout/
-│   │   │   ├── Navbar.tsx
-│   │   │   ├── Footer.tsx
-│   │   │   └── Container.tsx
-│   │   │
-│   │   ├── home/
-│   │   │   ├── Hero.tsx
-│   │   │   ├── About.tsx
-│   │   │   ├── ServicesOverview.tsx
-│   │   │   ├── Testimonials.tsx
-│   │   │   └── Metrics.tsx
-│   │   │
-│   │   ├── service/
-│   │   │   ├── ServiceCard.tsx
-│   │   │   └── ServiceDetails.tsx
-│   │   │
-│   │   ├── booking/
-│   │   │   ├── BookingForm.tsx
-│   │   │   ├── DurationSelector.tsx
-│   │   │   ├── LocationSelector.tsx
-│   │   │   ├── CostSummary.tsx
-│   │   │   └── BookingSuccess.tsx
-│   │   │
-│   │   ├── dashboard/
-│   │   │   ├── Sidebar.tsx
-│   │   │   ├── Topbar.tsx
-│   │   │   ├── DashboardCard.tsx
-│   │   │   ├── BookingTable.tsx
-│   │   │   └── StatusBadge.tsx
-│   │   │
-│   │   ├── admin/
-│   │   │   ├── AdminSidebar.tsx
-│   │   │   ├── AdminTopbar.tsx
-│   │   │   ├── UserTable.tsx
-│   │   │   ├── BookingManagementTable.tsx
-│   │   │   └── PaymentHistoryTable.tsx
-│   │   │
-│   │   └── ui/
-│   │       ├── Button.tsx
-│   │       ├── Input.tsx
-│   │       ├── Select.tsx
-│   │       ├── Modal.tsx
-│   │       ├── Card.tsx
-│   │       ├── Badge.tsx
-│   │       ├── Loader.tsx
-│   │       └── Pagination.tsx
-│
-│   ├── lib/
-│   │   ├── db.ts                     # Database connection
-│   │   ├── auth.ts                   # NextAuth config
-│   │   ├── stripe.ts                 # Stripe config
-│   │   ├── email.ts                  # Email logic
-│   │   ├── invoice.ts                # Invoice template
-│   │   ├── metadata.ts               # Metadata helper
-│   │   ├── roles.ts                  # Role-based access
-│   │   └── utils.ts
-│
-│   ├── models/ (if MongoDB)
-│   │   ├── User.ts
-│   │   ├── Service.ts
-│   │   ├── Booking.ts
-│   │   ├── Payment.ts
-│   │   └── Review.ts
-│
-│   ├── prisma/ (if PostgreSQL)
-│   │   └── schema.prisma
-│
-│   ├── hooks/
-│   │   ├── useAuth.ts
-│   │   ├── useBooking.ts
-│   │   ├── useStripe.ts
-│   │   └── useRole.ts
-│
-│   ├── middleware.ts                 # Protect private routes
-│
-│   ├── types/
-│   │   ├── user.d.ts
-│   │   ├── booking.d.ts
-│   │   ├── service.d.ts
-│   │   └── payment.d.ts
-│
-│   └── styles/
-│       └── globals.css
-│
-├── .env.local
-├── next.config.js
-├── tailwind.config.ts
-├── tsconfig.json
-├── package.json
-└── README.md
+# Care.xyz 🏥
+### Baby Sitting & Elderly Care Service Platform
+
+Care.xyz is a full-stack caregiving service platform built with Next.js 14.  
+It allows users to book trusted caretakers for children, elderly, and sick family members.
+
+The goal of the platform is to make caregiving easy, secure, and accessible for everyone.
+
+---
+
+## 🌍 Live Concept
+
+Care.xyz connects families with verified caregivers and provides:
+
+- Babysitting Services
+- Elderly Care Services
+- Special Medical / Sick Care
+- Secure Online Booking
+- Payment Integration
+- Email Invoice System
+- User Dashboard & Admin Panel
+
+---
+
+## 🚀 Features
+
+### ✅ Core Features
+- Responsive Design (Mobile / Tablet / Desktop)
+- User Authentication (Email & Password)
+- Google Social Login
+- Dynamic Booking System
+- Location Selection (Division, District, City, Area, Address)
+- Automatic Total Cost Calculation
+- Booking Status Tracking (Pending / Confirmed / Completed / Cancelled)
+- My Bookings Dashboard
+- Service Detail Pages
+- Metadata Implementation (SEO)
+
+### 💳 Payment
+- Stripe Payment Integration
+- Payment Webhook Handling
+- Booking Created After Successful Payment
+- Email Invoice Sent After Booking
+
+### 👤 User Dashboard
+- Overview (Booking Stats)
+- My Bookings
+- Payment History
+- Profile & Settings
+
+### 🛠 Admin Dashboard
+- Manage Users
+- Manage Bookings
+- Manage Services
+- View Payment History
+
+---
+
+## 🧱 Tech Stack
+
+| Technology | Purpose |
+|------------|----------|
+| Next.js 14 (App Router) | Full-stack Framework |
+| TypeScript | Type Safety |
+| Tailwind CSS | Styling |
+| NextAuth | Authentication |
+| MongoDB / PostgreSQL | Database |
+| Stripe | Payment Gateway |
+| Nodemailer / Resend | Email Invoice |
+
+---
+
+## 📂 Project Structure
+
+---
+
+## 🔐 Environment Variables
+
+Create a `.env.local` file and add:
+NEXTAUTH_SECRET=
+NEXTAUTH_URL=
+
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+
+DATABASE_URL=
+
+STRIPE_SECRET_KEY=
+STRIPE_WEBHOOK_SECRET=
+
+EMAIL_SERVER_USER=
+EMAIL_SERVER_PASSWORD=
+EMAIL_FROM=
+
+⚠️ Never commit your `.env.local` file to GitHub.
+
+---
+
+## 🛠 Installation & Setup
+
+### 1️⃣ Clone the repository
+
+---
+
+## 📦 Booking Flow
+
+1. User selects a service
+2. Chooses duration & location
+3. Total cost is calculated dynamically
+4. User completes Stripe payment
+5. Booking created with status = Pending
+6. Email invoice sent automatically
+
+---
+
+## 🔐 Role-Based Access
+
+- Public Routes: Homepage, Service Details
+- Private Routes: Booking, Dashboard
+- Admin Routes: Admin Panel (Role Protected)
+
+---
+
+## 📊 Future Improvements
+
+- Caregiver Registration System
+- Real-time Booking Status Updates
+- Notification System
+- Review & Rating System
+- Advanced Admin Analytics
+- Mobile App Version
+
+---
+
+## 🧠 Learning Goals
+
+This project demonstrates:
+
+- Full-stack architecture with Next.js App Router
+- Secure authentication system
+- Payment integration with Stripe
+- Role-based authorization
+- Email automation
+- Production-level folder structure
+
+---
+
+## 📄 License
+
+This project is created for academic and portfolio purposes.
+
+---
+
+## 👨‍💻 Author
+
+Nazrul Islam  
+Full-Stack Web Developer  
+
+---
+
+## ⭐ If You Like This Project
+
+Give it a ⭐ on GitHub!
