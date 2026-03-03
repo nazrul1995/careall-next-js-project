@@ -28,7 +28,7 @@ export default function RootLayout({ children }) {
         <Providers>
           <div className="min-h-screen bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-sans transition-colors duration-300 overflow-x-hidden">
             <Navbar/>
-            <main className="flex-1 pt-16 sm:pt-20">
+            <main className="flex-1">
               {children}
             </main>
             <Footer />

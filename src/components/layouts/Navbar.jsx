@@ -9,7 +9,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const Navbar = () => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-
+if(pathname.startsWith('/dashboard')) return <> </>; // hide navbar on caretakers page
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'Services', href: '/services' },

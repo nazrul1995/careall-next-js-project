@@ -1,8 +1,12 @@
+'use client';
 const { MdVolunteerActivism } = require("react-icons/md");
 
+import { usePathname } from 'next/navigation';
 import React from 'react';
 
 const Footer = () => {
+    const pathname = usePathname();
+    if(pathname.startsWith('/dashboard')) return <> </>; // hide footer on caretakers page
     return (
         <footer className="bg-zinc-950 text-zinc-400 py-20">
             <div className="max-w-7xl mx-auto px-6">

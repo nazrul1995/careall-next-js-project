@@ -17,7 +17,7 @@ const AllCareTakers = async ({ searchParams }) => {
   return (
     <div className="min-h-screen bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-sans">
       {/* Main content */}
-      <main className="max-w-7xl mx-auto px-4 py-8">
+      <div className="max-w-7xl mx-auto px-4 py-30">
         <div className="flex flex-col lg:flex-row gap-8">
           {/* interactive search with live filtering */}
           <LiveCaretakerSearch
@@ -33,7 +33,7 @@ const AllCareTakers = async ({ searchParams }) => {
             }}
           />
         </div>
-      </main>
+      </div>
     </div>
   );
 };
