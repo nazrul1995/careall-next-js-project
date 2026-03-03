@@ -73,7 +73,7 @@ let cursor = collection.find(query);
     }
   }
 
-  const total = await cursor.count();
+  const total = await collection.countDocuments(query);
 
   let results;
   if (page && limit) {
