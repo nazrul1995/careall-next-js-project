@@ -1,6 +1,5 @@
-// components/CaregiverProfile.tsx
-'use client';
-
+import { getSingleCaretaker } from '@/actions/server/caretakers';
+import Image from 'next/image';
 import React from 'react';
 import { 
   MdStar, 
@@ -13,7 +12,10 @@ import {
   MdChevronRight 
 } from 'react-icons/md';
 
-const CaregiverProfile = () => {
+const CaregiverProfile = async ({params}) => {
+  const { id } = await params;
+  const careGiverProfile = await getSingleCaretaker(id);
+  console.log(careGiverProfile);
   return (
     <main className="mx-auto max-w-7xl w-full px-6 py-8">
       {/* Breadcrumbs */}
@@ -22,7 +24,7 @@ const CaregiverProfile = () => {
         <span className="text-xs">›</span>
         <a href="#" className="hover:text-primary transition-colors">Caretakers</a>
         <span className="text-xs">›</span>
-        <span className="text-slate-900 dark:text-slate-200 font-medium">Elena Rodriguez</span>
+        <span className="text-slate-900 dark:text-slate-200 font-medium">{careGiverProfile.name}</span>
       </nav>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -34,9 +36,11 @@ const CaregiverProfile = () => {
               {/* Photo */}
               <div className="relative group shrink-0">
                 <div className="w-32 h-32 md:w-40 md:h-40 rounded-xl overflow-hidden ring-4 ring-primary/10">
-                  <img
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDS3PaH-MLIvOP8OOg94pPtnxTyuXBuTokeZQTDAR8FnGSXkrEOKe8Zc4CwaVdJX_Cbju_iDBYt5STypI2Zv_zY32XWBrmuH-Lrh6cCbDrlSB8XTVrbjbGCPMLXzOy0aE2LgOEJigntVFhf4UDHqGg3-cBjqXwQmmjnjaEIMiHYHinLbOcEFXJQGVOupUB82YfHVot0ZMR3dyZ-amHePbq7ILSMDe2z1Ea6g9OTCC3XvBlKdI1JZMnezLdmDRUpQ35rjb9Yj5p9l-A8"
-                    alt="Elena Rodriguez"
+                  <Image
+                  width={500}
+                  height={500}
+                    src={careGiverProfile.photo}
+                    alt={careGiverProfile.name}
                     className="w-full h-full object-cover transition-transform group-hover:scale-105 duration-300"
                   />
                 </div>
@@ -53,11 +57,11 @@ const CaregiverProfile = () => {
                 <div className="flex flex-col sm:flex-row justify-between items-start gap-4">
                   <div>
                     <h1 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-2">
-                      Elena Rodriguez, CNA
+                      {careGiverProfile.name}
                     </h1>
                     <p className="text-slate-600 dark:text-slate-400 font-medium flex items-center gap-2">
                       <MdLocationOn className="text-primary" />
-                      Brooklyn, New York • 5 miles away
+                     {careGiverProfile.location}
                     </p>
                   </div>
 
@@ -75,10 +79,10 @@ const CaregiverProfile = () => {
                 <div className="mt-6 grid grid-cols-3 gap-4">
                   <div className="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl text-center">
                     <p className="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-wide mb-1">
-                      Rating
+                     Rating
                     </p>
                     <div className="flex items-center justify-center gap-1.5">
-                      <span className="text-2xl font-bold text-slate-900 dark:text-white">4.9</span>
+                      <span className="text-2xl font-bold text-slate-900 dark:text-white">{careGiverProfile.rating}</span>
                       <MdStar className="text-yellow-400 text-xl" />
                     </div>
                   </div>
@@ -87,14 +91,14 @@ const CaregiverProfile = () => {
                     <p className="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-wide mb-1">
                       Exp.
                     </p>
-                    <p className="text-2xl font-bold text-slate-900 dark:text-white mt-1">12 Yrs</p>
+                    <p className="text-2xl font-bold text-slate-900 dark:text-white mt-1">{careGiverProfile.experience} Yrs</p>
                   </div>
 
                   <div className="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl text-center">
                     <p className="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-wide mb-1">
                       Jobs
                     </p>
-                    <p className="text-2xl font-bold text-slate-900 dark:text-white mt-1">320+</p>
+                    <p className="text-2xl font-bold text-slate-900 dark:text-white mt-1">{careGiverProfile?.jobs}</p>
                   </div>
                 </div>
               </div>
@@ -127,10 +131,10 @@ const CaregiverProfile = () => {
                   Professional Biography
                 </h3>
                 <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                  I am a dedicated Certified Nursing Assistant with over 12 years of experience in providing compassionate care for both elderly patients and children. My background in medical settings allows me to handle complex needs with patience and professional expertise. I believe in fostering a safe, nurturing environment where families feel completely at ease.
+                  {careGiverProfile.description}
                 </p>
                 <div className="mt-6 flex flex-wrap gap-2">
-                  {["First Aid Certified", "CPR Certified", "Special Needs Care", "Bilingual (Eng/Esp)"].map((tag) => (
+                  {careGiverProfile?.specialties?.map((tag) => (
                     <span
                       key={tag}
                       className="px-3 py-1.5 bg-primary/10 text-primary text-xs md:text-sm font-medium rounded-full"

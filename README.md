@@ -71,7 +71,23 @@ Care.xyz connects families with verified caregivers and provides:
 ---
 
 ## 📂 Project Structure
-
+src/
+├── app/
+│ ├── page.tsx
+│ ├── service/[serviceId]
+│ ├── booking/[serviceId]
+│ ├── dashboard/
+│ ├── admin/
+│ ├── login/
+│ ├── register/
+│ └── api/
+│
+├── components/
+├── lib/
+├── models/
+├── hooks/
+├── types/
+└── middleware.ts
 ---
 
 ## 🔐 Environment Variables

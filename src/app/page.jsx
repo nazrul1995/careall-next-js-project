@@ -1,9 +1,7 @@
-'use client';
-
+import Caretakers from '@/components/Home/Services/Caretakers';
 import Navbar from '@/components/layouts/Navbar';
 import React from 'react';
 import {
-  MdDiversity3,
   MdVerified,
   MdSearch,
   MdArrowForward,
@@ -15,36 +13,6 @@ import {
   MdEventAvailable,
 } from 'react-icons/md';
 
-const caretakers = [
-  {
-    name: "Sarah M.",
-    title: "Certified Pediatric Nurse • 5y exp",
-    price: "$25",
-    rating: "4.9",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAmfKNear-LixPD0Y9GrJtR4x2dN5ShGJ9c4S5tfWWNETqpCEfm5Dn7dsEp-0YtEzR8VshVBM-3UrQMRRK40X_F6ALilU35a3-76R_QQL7s_WslEvmtGakF5YbwP8lkrO3LtZ75rjB6BvFpw7FMCFAUYtP0JX8qkX8Oa6D_bPJ_O7_p-VG9z5QwWwPqmZwZobOK9CqMGJnZeQ_vjJj2wGV6pDhIcQbQKuehzIaDUlQywMNa-1fZfrlJgz3gjcC1_0pE8L0VjazEpDZh",
-  },
-  {
-    name: "David R.",
-    title: "Elderly Support Expert • 8y exp",
-    price: "$30",
-    rating: "5.0",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAqmpPsBgjKTaAjM2lIZmCwpq8Btu08ikIUFYEn10t3lbBDW5XXptI1XagpqekGMHrdrepn231KMr7XURqRqv1pAlddDByhIf7kXCPF3KppWA-ZECN9fFpJ0QRegyz_D5ugrNssOWcteq2wB9PME52N4vzkQYPycxY7dL_b_Pdm7SZ7k5I5WDjHai6Ub1vmkxfUurNefgdAjFQwvwg9NqUHDXaT0-bbg1Sb4coL-xgdTHUawNEUoUAO4RdP5bGWG5ztc93v3lgTTFja",
-  },
-  {
-    name: "Emily L.",
-    title: "Special Needs Educator • 4y exp",
-    price: "$28",
-    rating: "4.8",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBHm2p1VhORkPBRaKSmO-3tQAwjeSNfxATu90u-lb9EE5Pjfz3VfuEdgNmyB8RGAVzdPAH6FBOxME7w6pvcqDdzHugI6bsI8fVJ-YC70r94nG7IMeKYv1DME7oaudollBwAcfQsvLmezdw-HJZN4xNQLrK_BQAWEcPAnRP5GmCGp8qWsHdmJTLlh-vcTSF2ecoeDphedvEGYImS-WSDhM8bACNKhQHiOPJmTDO1vAKnKIDKL4BMsYDApEovJM46xrohUn8a3s9wy1Kl",
-  },
-  {
-    name: "Michael K.",
-    title: "Senior Living Specialist • 10y exp",
-    price: "$35",
-    rating: "4.9",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDpN5PzllfGTe8JjnSgVj2C72nX4U2NXMQItDHUlDkTmdNk1EfTV38Je5EL8iQygHppvSubq_WbBUPcQppYzOaUbtXQ_YwvOcU2yRojGYhRxR5N07q6l_zo4sdEAKTEnJHy42eTpI8ghj_EhYLnzS6BnHiGtXm1Y08OIphE0oAsShMe5neAGkz_yF7mUCRURVYMYtKyqd90qA8D_pOohEgTu7bwLbY08SBRazlSPbyTQ_BIyZ7HkpA0GvuBhQVR5NxDAtdytUYLc2Ht",
-  },
-];
 
 const Home = () => {
 
@@ -169,52 +137,7 @@ const Home = () => {
       </section>
 
       {/* Featured Caretakers */}
-      <section className="py-20 px-4">
-        <div className="mx-auto max-w-7xl">
-          <div className="mb-12 flex flex-col sm:flex-row items-end justify-between gap-4">
-            <div>
-              <h2 className="font-display text-3xl font-bold text-slate-900 dark:text-slate-100">Featured Caretakers</h2>
-              <p className="mt-2 text-slate-600 dark:text-slate-400">Available caretakers with the highest community ratings.</p>
-            </div>
-            <button className="text-sm font-bold text-primary flex items-center gap-1">
-              View All Caregivers <MdArrowForward className="text-sm" />
-            </button>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {caretakers.map((caretaker, index) => (
-              <div
-                key={index}
-                className="rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-sm hover:shadow-lg transition-all group"
-              >
-                <div className="relative mb-4">
-                  <img
-                    className="h-48 w-full rounded-xl object-cover"
-                    src={caretaker.image}
-                    alt={caretaker.name}
-                  />
-                  <div className="absolute top-2 right-2 rounded-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm px-2 py-1 flex items-center gap-1 text-xs font-bold text-slate-900 dark:text-white">
-                    <MdStar className="text-yellow-500 text-[14px]" /> {caretaker.rating}
-                  </div>
-                </div>
-
-                <h4 className="font-display font-bold text-slate-900 dark:text-slate-100">{caretaker.name}</h4>
-                <p className="text-xs text-slate-500 mb-4">{caretaker.title}</p>
-
-                <div className="flex items-center justify-between border-t border-slate-100 dark:border-slate-800 pt-4">
-                  <div className="text-sm">
-                    <span className="font-bold text-primary">{caretaker.price}</span>
-                    <span className="text-slate-500">/hr</span>
-                  </div>
-                  <button className="rounded-lg bg-slate-100 dark:bg-slate-800 px-3 py-1.5 text-xs font-bold hover:bg-primary hover:text-white transition-colors group-hover:bg-primary group-hover:text-white">
-                    Book Now
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <Caretakers/>
 
       {/* How It Works */}
       <section className="py-20 bg-primary/5">
