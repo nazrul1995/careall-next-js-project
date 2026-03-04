@@ -50,7 +50,7 @@ const ServicesCard = ({caretaker}) => {
                         <span className="font-bold text-primary">{caretaker.hourlyRate}</span>
                         <span className="text-slate-500">/hr</span>
                       </div>
-                      <Link href={`/caretakers/${caretaker._id}`} className="rounded-lg bg-slate-100 dark:bg-slate-800 px-3 py-1.5 text-xs font-bold hover:bg-primary hover:text-white transition-colors group-hover:bg-primary group-hover:text-white">
+                      <Link href={`/services/${caretaker._id}`} className="rounded-lg bg-slate-100 dark:bg-slate-800 px-3 py-1.5 text-xs font-bold hover:bg-primary hover:text-white transition-colors group-hover:bg-primary group-hover:text-white">
                         Book Now
                       </Link>
                     </div>
