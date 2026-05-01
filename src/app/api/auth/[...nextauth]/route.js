@@ -39,6 +39,7 @@ export const authOptions = {
             email: user.email,
             name: user.name,
             role: user.role,
+            image: user.image || null,
           };
         } catch (error) {
           throw new Error(error.message);
@@ -67,10 +68,10 @@ export const authOptions = {
               createdAt: new Date(),
               updatedAt: new Date(),
             });
-            existingUser = { _id: result.insertedId, ...user };
+            existingUser = { _id: result.insertedId };
           }
           
-          // Update user document with Google ID if not already set
+          // Update user document with Google ID and image if not already set
           if (!existingUser.googleId) {
             await usersCollection.updateOne(
               { _id: existingUser._id },
@@ -84,13 +85,16 @@ export const authOptions = {
             );
           }
           
+          // Attach MongoDB id to user object for JWT
+          user.id = existingUser._id.toString();
+          user.role = existingUser.role || 'Client';
+          
           return true;
         } catch (error) {
           console.error('Google sign-in error:', error);
           return false;
         }
       }
-      
       return true;
     },
     async jwt({ token, user, account }) {
@@ -98,6 +102,7 @@ export const authOptions = {
         token.id = user.id;
         token.role = user.role || 'Client';
         token.provider = account?.provider;
+        token.image = user.image || null;
       }
       return token;
     },
@@ -105,6 +110,7 @@ export const authOptions = {
       if (session.user) {
         session.user.id = token.id;
         session.user.role = token.role;
+        session.user.image = token.image;
       }
       return session;
     },

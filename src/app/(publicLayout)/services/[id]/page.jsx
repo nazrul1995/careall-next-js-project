@@ -5,10 +5,10 @@ import ProfileHero from '@/components/caregiver/ProfileHero';
 import TabsSection from '@/components/caregiver/TabsSection';
 import BookingCard from '@/components/caregiver/BookingCard';
 
-export const dynamic = 'force-dynamic'; // change as needed for rendering strategy
+export const dynamic = 'force-dynamic';
 
-export async function generateMetadata({ params }) {
-  const profile = await getSingleCaretaker(params.id);
+export async function generateMfetadata({ params }) {
+  const profile = await getSingleCaretaker(params._id);
   return {
     title: profile?.name ? `${profile.name} – Caregiver` : 'Caretaker Profile',
   };
@@ -36,7 +36,7 @@ const CaregiverProfile = async ({ params }) => {
 
         {/* Right column */}
         <div className="lg:col-span-1">
-          <BookingCard rate={profile?.rate || 0} />
+          <BookingCard profile={profile} />
         </div>
       </div>
     </main>

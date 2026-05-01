@@ -1,12 +1,10 @@
-// app/caretakers/page.tsx   or   components/CaretakerSearch.tsx
 import { getCaretakers } from '@/actions/server/caretakers';
 import LiveCaretakerSearch from '@/components/LiveCaretakerSearch';
 
 const AllCareTakers = async ({ searchParams }) => {
   const params = await searchParams;
   const { results: rawCaretakers, total } = await getCaretakers(params || {});
-  // convert any ObjectId values to primitive strings so the data can be
-  // passed into a client component without serialization errors
+ 
   const caretakers = rawCaretakers.map(c => ({
     ...c,
     _id: c._id?.toString ? c._id.toString() : c._id,

@@ -14,7 +14,7 @@ const SearchHeader = ({ search = '', count = 0, sort = '', onSearchChange, onSor
           {search && (
             <span>
               {' '}
-              for <span className="font-medium">"{search}"</span>
+              for <span className="font-medium">&quot;{search}&quot;</span>
             </span>
           )}
         </p>

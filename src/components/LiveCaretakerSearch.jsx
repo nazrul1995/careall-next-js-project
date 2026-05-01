@@ -53,11 +53,26 @@ const LiveCaretakerSearch = ({
 
   const handleSearch = useCallback((q) => {
     setFilters(prev => ({ ...prev, search: q, page: 1 }));
-  }, []);
+  }, []);  
+
+  // ensure current page is not out of range when total or limit change
+  useEffect(() => {
+    const totalPages = Math.ceil(total / filters.limit) || 1;
+    if (filters.page > totalPages) {
+      setFilters(prev => ({ ...prev, page: totalPages }));
+    }
+  }, [total, filters.limit, filters.page]);
 
   const handlePage = useCallback((p) => {
-    setFilters(prev => ({ ...prev, page: p }));
-  }, []);
+    setFilters(prev => {
+      const limit = prev.limit || DEFAULT_PAGE_SIZE;
+      const totalPages = Math.ceil(total / limit) || 1;
+      let newPage = p;
+      if (newPage < 1) newPage = 1;
+      if (newPage > totalPages) newPage = totalPages;
+      return { ...prev, page: newPage };
+    });
+  }, [total]);
 
   return (
     <div>

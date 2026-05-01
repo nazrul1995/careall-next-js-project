@@ -1,107 +1,76 @@
 'use client';
+import { useSession } from 'next-auth/react';
+import Image from 'next/image';
 import React from 'react';
-import { MdArrowForward, MdLocationOn } from 'react-icons/md';
+import { MdArrowForward, MdVerified } from 'react-icons/md';
 
 const Banner = () => {
+  const session = useSession();
   return (
-    <div>
-      {/* Hero Section - Modern & Emotional */}
-      <section className="relative min-h-[100dvh] flex items-center pt-20 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(at_70%_30%,rgba(34,211,238,0.12),transparent_50%)]" />
+          <section className="relative px-4 py-16 sm:px-6 lg:px-8 overflow-hidden">
+        <div className="absolute inset-0 -z-10 overflow-hidden">
+          <div className="absolute -top-[10%] -left-[10%] h-[600px] w-[600px] rounded-full bg-primary/10 blur-[120px]" />
+          <div className="absolute top-[20%] -right-[5%] h-[500px] w-[500px] rounded-full bg-teal-400/10 blur-[100px]" />
+        </div>
 
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="grid lg:grid-cols-12 gap-16 items-center">
-            <div className="lg:col-span-7 space-y-10">
-              <div className="inline-flex items-center gap-2.5 bg-white dark:bg-zinc-900 px-5 py-2 rounded-3xl border border-cyan-100 dark:border-cyan-900 text-sm font-semibold text-cyan-600">
-                <div className="w-2 h-2 bg-cyan-500 rounded-full animate-pulse" />
-                Trusted by 12,000+ families
+        <div className="mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="flex flex-col gap-8">
+              <div className="inline-flex items-center gap-2 self-start rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary">
+                <MdVerified className="text-base" />
+                <span>Trusted by 10,000+ families</span>
+                <p>{JSON.stringify(session)}</p>
               </div>
 
-              <h1 className="text-7xl lg:text-[5.2rem] leading-[1.05] font-bold tracking-tighter">
-                Care that feels like<br />
-                <span className="bg-gradient-to-r from-cyan-500 via-teal-400 to-cyan-500 bg-clip-text text-transparent">family.</span>
+              <h1 className="font-display text-5xl font-extrabold leading-[1.1] text-slate-900 dark:text-slate-50 sm:text-6xl">
+                Trusted Care for Your <span className="text-primary">Loved Ones</span>
               </h1>
 
-              <p className="text-2xl text-zinc-600 dark:text-zinc-400 max-w-xl">
-                Verified caregivers for newborns, seniors, and everyone in between. 
-                Book in minutes. Peace of mind guaranteed.
+              <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl">
+                Connecting families with premium babysitting, elderly care, and specialized support services.
+                Safety and compassion are our top priorities.
               </p>
 
-              {/* Smart Search Bar */}
-              <div className="bg-white dark:bg-zinc-900 p-2 rounded-3xl shadow-2xl shadow-zinc-200/60 dark:shadow-black/40 max-w-2xl">
-                <div className="flex flex-col md:flex-row gap-2">
-                  <div className="flex-1 flex items-center gap-3 px-6 py-4 bg-zinc-100 dark:bg-zinc-800 rounded-2xl">
-                    <MdLocationOn className="text-zinc-400 text-2xl" />
-                    <input
-                      type="text"
-                      placeholder="New York, NY or zip code"
-                      className="bg-transparent outline-none flex-1 placeholder-zinc-400 text-lg"
-                    />
-                  </div>
-                  <button className="bg-gradient-to-r from-cyan-500 to-teal-500 hover:brightness-110 text-white px-12 py-4 rounded-2xl font-semibold flex items-center gap-3 text-lg transition-all active:scale-[0.98]">
-                    Find Care Now
-                    <MdArrowForward />
-                  </button>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-8 text-sm">
-                <div className="flex -space-x-4">
-                  {[1, 2, 3, 4].map((i) => (
-                    <div
-                      key={i}
-                      className="w-9 h-9 rounded-2xl border-2 border-white dark:border-zinc-900 overflow-hidden"
-                    >
-                      <img
-                        src={`https://randomuser.me/api/portraits/women/${i}.jpg`}
-                        alt=""
-                        className="object-cover"
-                      />
-                    </div>
-                  ))}
-                </div>
-                <div>
-                  <div className="font-semibold">
-                    4.98 <span className="text-amber-500">★</span>
-                  </div>
-                  <div className="text-xs text-zinc-500">
-                    from 3,284 reviews this month
-                  </div>
-                </div>
+              <div className="flex flex-wrap gap-4">
+                <button className="rounded-xl bg-primary px-8 py-4 text-base font-bold text-white shadow-xl shadow-primary/30 hover:translate-y-[-2px] transition-all flex items-center gap-2">
+                  Find Caretaker <MdArrowForward />
+                </button>
+                <button className="rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-8 py-4 text-base font-bold text-slate-900 dark:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all">
+                  Become a Caregiver
+                </button>
               </div>
             </div>
 
-            {/* Hero Visual */}
-            <div className="lg:col-span-5 relative">
-              <div className="relative rounded-[3rem] overflow-hidden shadow-2xl ring-1 ring-zinc-200 dark:ring-zinc-800">
-                <img
-                  src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=2070&q=85"
-                  alt="Happy family with caregiver"
-                  className="w-full aspect-[4/3] object-cover"
+            {/* Hero Image + Glass Card */}
+            <div className="relative">
+              <div className="relative aspect-square w-full max-w-lg mx-auto overflow-hidden rounded-3xl shadow-2xl">
+                <Image
+                width={500}
+                height={500}
+                  className="h-full w-full object-cover"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2dwWEsUj9IV4D_8Cv-vKwkv2-u8ZDB7q_ASJ28iG4XZ9wRvrT1hGHp06Z4krGleDvXEkOFZi4pH0fgqqx4uIqeX8DRGekzYGpV25-humswOhhbn_EHRrEROzpcdIM-MRDRKY-OMr9LmsqTQaGE3MOq7cw-Viks4Kuzc3xgp_9MVBI255qMoD2FpIjGoEub7ZIwcXszA6eIDitw3mTuuUuOBxalcGmpb-G8mXJS-6Jgg_yTvQXpMDvR4tLluDtHkpy73iaM5DRVmUA"
+                  alt="Friendly caregiver smiling with an elderly woman"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-              </div>
 
-              {/* Floating Trust Card */}
-              <div className="absolute -bottom-8 -left-8 bg-white dark:bg-zinc-900 p-7 rounded-3xl shadow-2xl flex items-center gap-5 border border-zinc-100 dark:border-zinc-800">
-                <div className="text-5xl">🛡️</div>
-                <div>
-                  <div className="font-semibold text-xl">100% vetted</div>
-                  <div className="text-sm text-zinc-500">
-                    Background • Training • References
+                {/* Glass Overlay */}
+                <div className="absolute bottom-6 left-6 right-6 bg-white/70 dark:bg-slate-900/70 backdrop-blur-2xl border border-white/30 dark:border-white/10 p-6 rounded-2xl shadow-lg">
+                  <div className="flex items-center gap-4">
+                    <div className="flex -space-x-2">
+                      <div className="h-8 w-8 rounded-full border-2 border-white bg-slate-200" />
+                      <div className="h-8 w-8 rounded-full border-2 border-white bg-slate-300" />
+                      <div className="h-8 w-8 rounded-full border-2 border-white bg-slate-400" />
+                    </div>
+                    <div className="text-sm font-medium text-slate-900 dark:text-white">
+                      <span className="block font-bold">Top Rated Caregivers</span>
+                      <span className="text-xs text-slate-600 dark:text-slate-400">Available in your area now</span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-xs tracking-widest text-zinc-400">
-          SCROLL TO EXPLORE
-          <div className="w-px h-12 bg-gradient-to-b from-transparent via-zinc-400 to-transparent" />
-        </div>
       </section>
-    </div>
   );
 };
 
