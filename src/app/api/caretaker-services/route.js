@@ -1,6 +1,4 @@
 import { getCaretakers, postServices } from "@/actions/server/caretakers";
-import { collections } from "@/lib/dbConnect";
-import { ObjectId } from "mongodb";
 
 export async function GET(request) {
   const { searchParams } = new URL(request.url);

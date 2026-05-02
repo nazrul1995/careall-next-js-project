@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
   
             <div className="min-h-screen bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-sans transition-colors duration-300 overflow-x-hidden">
               <Navbar />
-              <main className="flex-1">
+              <main className="flex-1 mt-10">
                 {children}
               </main>
               <Footer />

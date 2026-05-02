@@ -3,34 +3,36 @@ import LiveCaretakerSearch from '@/components/LiveCaretakerSearch';
 
 const AllCareTakers = async ({ searchParams }) => {
   const params = await searchParams;
-  const { results: rawCaretakers, total } = await getCaretakers(params || {});
- 
-  const caretakers = rawCaretakers.map(c => ({
+
+  const { results: rawCaretakers = [], total = 0 } =
+    await getCaretakers(params || {});
+
+  const caretakers = rawCaretakers.map((c) => ({
     ...c,
-    _id: c._id?.toString ? c._id.toString() : c._id,
+    _id: c._id?.toString?.() || c._id,
   }));
 
-  const { service, minExp, minRate, maxRate, search } = params || {};
-  const selectedServices = Array.isArray(service) ? service : service ? [service] : [];
+  const selectedServices = Array.isArray(params?.service)
+    ? params.service
+    : params?.service
+    ? [params.service]
+    : [];
+
   return (
-    <div className="min-h-screen bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-sans">
-      {/* Main content */}
+    <div className="min-h-screen bg-background-light dark:bg-background-dark">
       <div className="max-w-7xl mx-auto px-4 py-30">
-        <div className="flex flex-col lg:flex-row gap-8">
-          {/* interactive search with live filtering */}
-          <LiveCaretakerSearch
-            initialCaretakers={caretakers}
-            initialTotal={total}
-            initialFilters={{
-              service: selectedServices,
-              minExp,
-              minRate,
-              maxRate,
-              search,
-              sort: params.sort || '',
-            }}
-          />
-        </div>
+        <LiveCaretakerSearch
+          initialCaretakers={caretakers}
+          initialTotal={total}
+          initialFilters={{
+            service: selectedServices,
+            minExp: params?.minExp || '',
+            minRate: params?.minRate || '',
+            maxRate: params?.maxRate || '',
+            search: params?.search || '',
+            sort: params?.sort || 'rating',
+          }}
+        />
       </div>
     </div>
   );
