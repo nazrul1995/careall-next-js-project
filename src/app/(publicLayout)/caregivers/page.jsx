@@ -1,16 +1,13 @@
 'use client';
 
+import CaretakerCard from '@/components/Card/CaretakerCard';
+import Breadcrumb from '@/components/caregiver/Breadcrumb';
 import { li } from 'framer-motion/client';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import {
   MdSearch,
   MdTune,
-  MdStar,
-  MdChevronLeft,
-  MdChevronRight,
-  MdVerified,
-  MdLocationOn,
 } from 'react-icons/md';
 
 const CareGiversPage = () => {
@@ -35,12 +32,12 @@ const CareGiversPage = () => {
 
       if (filters.search) params.append('search', filters.search);
       if (filters.specialties.length)
-      params.append('specialties', filters.specialties.join(','));
+        params.append('specialties', filters.specialties.join(','));
       params.append('minRate', filters.minRate);
       params.append('maxRate', filters.maxRate);
       params.append('sort', filters.sort);
       params.append('page', filters.page);
-params.append('limit', filters.limit);
+      params.append('limit', filters.limit);
       const res = await fetch(`/api/caregivers?${params.toString()}`);
       const data = await res.json();
 
@@ -53,10 +50,10 @@ params.append('limit', filters.limit);
     }
   };
 
-useEffect(() => {
-  fetchCaretakers();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}, [filters]);
+  useEffect(() => {
+    fetchCaretakers();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [filters]);
 
   const toggleSpecialty = (type) => {
     setFilters((prev) => ({
@@ -71,41 +68,43 @@ useEffect(() => {
   const handleSearch = (e) => {
     setFilters({ ...filters, search: e.target.value, page: 1 });
   };
-const getPageNumbers = () => {
-  const total = totalPages;
-  const current = filters.page;
-  const delta = 1; // how many pages around current
+  const getPageNumbers = () => {
+    const total = totalPages;
+    const current = filters.page;
+    const delta = 1; // how many pages around current
 
-  const pages = [];
+    const pages = [];
 
-  const rangeStart = Math.max(2, current - delta);
-  const rangeEnd = Math.min(total - 1, current + delta);
+    const rangeStart = Math.max(2, current - delta);
+    const rangeEnd = Math.min(total - 1, current + delta);
 
-  pages.push(1); // always show first page
+    pages.push(1); // always show first page
 
-  if (rangeStart > 2) {
-    pages.push('...');
-  }
+    if (rangeStart > 2) {
+      pages.push('...');
+    }
 
-  for (let i = rangeStart; i <= rangeEnd; i++) {
-    pages.push(i);
-  }
+    for (let i = rangeStart; i <= rangeEnd; i++) {
+      pages.push(i);
+    }
 
-  if (rangeEnd < total - 1) {
-    pages.push('...');
-  }
+    if (rangeEnd < total - 1) {
+      pages.push('...');
+    }
 
-  if (total > 1) {
-    pages.push(total); // always show last page
-  }
+    if (total > 1) {
+      pages.push(total); // always show last page
+    }
 
-  return pages;
-};
+    return pages;
+  };
   return (
-    < >
+    <>
+
       {/* Page Header */}
       <div className="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Breadcrumb />
           <h1 className="font-display text-4xl font-bold text-slate-900 dark:text-slate-100 mb-3">
             Find Your Perfect Caregiver
           </h1>
@@ -239,129 +238,64 @@ const getPageNumbers = () => {
 
             {/* Caretaker Grid */}
             <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
-              {caretakers.map((c) => (
-                <div
-                  key={c._id}
-                  className="group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-                >
-                  <div className="relative">
-                    <img
-                      src={c.photo || '/default-avatar.jpg'}
-                      alt={c.name}
-                      className="w-full h-56 object-cover"
-                    />
-                    {c.verified && (
-                      <div className="absolute top-4 right-4 bg-white dark:bg-slate-900 text-primary rounded-full p-1 shadow">
-                        <MdVerified size={22} />
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="p-6">
-                    <div className="flex items-start justify-between mb-4">
-                      <div>
-                        <h3 className="font-semibold text-xl">{c.name}</h3>
-                        <div className="flex items-center gap-1 text-slate-500 text-sm mt-1">
-                          <MdLocationOn size={16} />
-                          {c.location}
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400 px-3 py-1 rounded-2xl text-sm font-medium">
-                        <MdStar />
-                        {c.rating}
-                      </div>
-                    </div>
-
-                    <p className="text-slate-600 dark:text-slate-400 line-clamp-2 mb-5 text-sm leading-relaxed">
-                      {c.description}
-                    </p>
-
-                    {/* Specialties Tags */}
-                    {c.specialties && c.specialties.length > 0 && (
-                      <div className="flex flex-wrap gap-2 mb-6">
-                        {c.specialties.slice(0, 3).map((spec, i) => (
-                          <span
-                            key={i}
-                            className="text-xs bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 px-3 py-1 rounded-full"
-                          >
-                            {spec}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-
-                    <div className="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800">
-                      <div>
-                        <span className="text-2xl font-bold text-primary">${c.hourlyRate}</span>
-                        <span className="text-sm text-slate-500">/hr</span>
-                      </div>
-
-                      <Link
-                        href={`/caregivers/${c._id}`}
-                        className="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-2xl font-semibold transition-all active:scale-95"
-                      >
-                        View Profile
-                      </Link>
-                    </div>
-                  </div>
-                </div>
+              {caretakers.map((caretaker) => (
+                <CaretakerCard key={caretaker._id} caretaker={caretaker} />
               ))}
             </div>
 
             {/* Pagination */}
-{caretakers.length > 0 && (
-  <div className="flex justify-center items-center gap-2 mt-12 flex-wrap">
+            {caretakers.length > 0 && (
+              <div className="flex justify-center items-center gap-2 mt-12 flex-wrap">
 
-    {/* Prev */}
-    <button
-      onClick={() =>
-        setFilters((p) => ({ ...p, page: Math.max(1, p.page - 1) }))
-      }
-      disabled={filters.page === 1}
-      className="px-4 py-2 rounded-xl border disabled:opacity-40"
-    >
-      Prev
-    </button>
+                {/* Prev */}
+                <button
+                  onClick={() =>
+                    setFilters((p) => ({ ...p, page: Math.max(1, p.page - 1) }))
+                  }
+                  disabled={filters.page === 1}
+                  className="px-4 py-2 rounded-xl border disabled:opacity-40"
+                >
+                  Prev
+                </button>
 
-    {/* Page Numbers */}
-    {getPageNumbers().map((p, i) =>
-      p === '...' ? (
-        <span key={i} className="px-3 py-2 text-slate-400">
-          ...
-        </span>
-      ) : (
-        <button
-          key={i}
-          onClick={() =>
-            setFilters((prev) => ({ ...prev, page: p }))
-          }
-          className={`px-4 py-2 rounded-xl border ${
-            filters.page === p
-              ? 'bg-primary text-white'
-              : 'hover:bg-slate-100 dark:hover:bg-slate-800'
-          }`}
-        >
-          {p}
-        </button>
-      )
-    )}
+                {/* Page Numbers */}
+                {getPageNumbers().map((p, i) =>
+                  p === '...' ? (
+                    <span key={i} className="px-3 py-2 text-slate-400">
+                      ...
+                    </span>
+                  ) : (
+                    <button
+                      key={i}
+                      onClick={() =>
+                        setFilters((prev) => ({ ...prev, page: p }))
+                      }
+                      className={`px-4 py-2 rounded-xl border ${filters.page === p
+                          ? 'bg-primary text-white'
+                          : 'hover:bg-slate-100 dark:hover:bg-slate-800'
+                        }`}
+                    >
+                      {p}
+                    </button>
+                  )
+                )}
 
-    {/* Next */}
-    <button
-      onClick={() =>
-        setFilters((p) => ({
-          ...p,
-          page: Math.min(totalPages, p.page + 1),
-        }))
-      }
-      disabled={filters.page >= totalPages}
-      className="px-4 py-2 rounded-xl border disabled:opacity-40"
-    >
-      Next
-    </button>
+                {/* Next */}
+                <button
+                  onClick={() =>
+                    setFilters((p) => ({
+                      ...p,
+                      page: Math.min(totalPages, p.page + 1),
+                    }))
+                  }
+                  disabled={filters.page >= totalPages}
+                  className="px-4 py-2 rounded-xl border disabled:opacity-40"
+                >
+                  Next
+                </button>
 
-  </div>
-)}
+              </div>
+            )}
           </div>
         </div>
       </div>

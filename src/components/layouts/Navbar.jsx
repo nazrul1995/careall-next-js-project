@@ -22,10 +22,9 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Home', href: '/' },
-    { name: 'Services', href: '/services' },
     { name: 'How it Works', href: '/how-it-works' },
     { name: 'About', href: '/about' },
-    { name: 'For Caregivers', href: '/caregivers' },
+    { name: 'Caregivers', href: '/caregivers' },
   ];
 
   const isActive = (href) => pathname === href;
