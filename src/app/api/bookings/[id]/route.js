@@ -135,7 +135,7 @@ export async function PATCH(request, { params }) {
     );
 
     // Cancel job in caregiver's list
-    const caretakersCollection = await dbConnect(collections.CARETAKERS);
+    const caretakersCollection = await dbConnect(collections.caregivers);
     await caretakersCollection.updateOne(
       { 'jobs.bookingId': id },
       {

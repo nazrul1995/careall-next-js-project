@@ -23,7 +23,7 @@ const RegisterPage = () => {
       name: "",
       email: "",
       password: "",
-      photo: null,
+      photo: "",
       photoURL: "",
       termsAgreed: false,
     },

@@ -5,7 +5,7 @@ import { ObjectId } from "mongodb";
 
 
 export async function getCaretakers(filters = {}, options = {}) {
-  const collection = await dbConnect(collections.CARETAKERS);
+  const collection = await dbConnect(collections.caregivers);
 
   const query = {};
 
@@ -87,7 +87,7 @@ let cursor = collection.find(query);
 }
 
 export const postServices = async (data) => {
-  const collection = await dbConnect(collections.CARETAKERS);
+  const collection = await dbConnect(collections.caregivers);
   const result = await collection.insertOne(data);
   return result;
 };
@@ -98,7 +98,7 @@ export const getSingleCaretaker = async (id) => {
     return {};
   }
 
-  const collection = await dbConnect(collections.CARETAKERS);
+  const collection = await dbConnect(collections.caregivers);
 
   const singleCaretaker = await collection.findOne({
     _id: new ObjectId(id),

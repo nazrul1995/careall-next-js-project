@@ -16,7 +16,7 @@ export async function PATCH(request, { params }) {
     return Response.json({ error: "Invalid ID" }, { status: 400 });
   }
 
-  const collection = await dbConnect(collections.CARETAKERS);
+  const collection = await dbConnect(collections.caregivers);
 
   const result = await collection.updateOne(
     { _id: new ObjectId(id) },
@@ -35,7 +35,7 @@ export async function DELETE(request, { params }) {
     return Response.json({ error: "Invalid ID" }, { status: 400 });
   }
 
-  const collection = await dbConnect(collections.CARETAKERS);
+  const collection = await dbConnect(collections.caregivers);
 
   const result = await collection.deleteOne({
     _id: new ObjectId(id),

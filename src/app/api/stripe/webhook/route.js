@@ -23,7 +23,7 @@ export async function POST(request) {
 
   try {
     const bookingsCollection = await dbConnect(collections.booking);
-    const caretakersCollection = await dbConnect(collections.CARETAKERS);
+    const caretakersCollection = await dbConnect(collections.caregivers);
 
     switch (event.type) {
       case 'payment_intent.succeeded': {

@@ -36,7 +36,7 @@ export default function TabsSection({ profile }) {
       <div className="p-6 md:p-8 space-y-10">
         {tab === 'about' && <AboutTab profile={profile} />}
         {tab === 'reviews' && <ReviewsTab id={profile?.id} />}
-        {tab === 'availability' && <AvailabilityCalendar id={profile?.id} />}
+        {tab === 'availability' && <AvailabilityCalendar id={profile?._id} />}
         {tab === 'credentials' && <CredentialsTab profile={profile} />}
       </div>
     </section>

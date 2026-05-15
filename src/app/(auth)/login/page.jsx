@@ -59,7 +59,7 @@ const LoginPage = () => {
       email,
       password,
       role,
-      callbackUrl
+      callbackUrl,
     });
 
     setLoading(false);

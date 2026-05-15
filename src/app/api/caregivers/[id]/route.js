@@ -12,7 +12,7 @@ export async function GET(request, { params }) {
       );
     }
 
-    const collection = await dbConnect(collections.CARETAKERS);
+    const collection = await dbConnect(collections.caregivers);
 
     const caretaker = await collection.findOne({
       _id: new ObjectId(id),

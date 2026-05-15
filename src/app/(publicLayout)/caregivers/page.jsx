@@ -18,8 +18,8 @@ const CareGiversPage = () => {
   const [filters, setFilters] = useState({
     search: '',
     specialties: [],
-    minRate: 15,
-    maxRate: 50,
+    minRate: 0,
+    maxRate: 100,
     sort: 'rating',
     page: 1,
     limit: 6,

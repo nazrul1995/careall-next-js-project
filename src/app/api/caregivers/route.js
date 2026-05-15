@@ -19,7 +19,7 @@ export async function GET(request) {
     const limit = Number(searchParams.get('limit')) || 9;
     const skip = (page - 1) * limit;
 
-    const collection = await dbConnect(collections.CARETAKERS);
+    const collection = await dbConnect(collections.caregivers);
 
     // ================= SINGLE =================
     if (id) {

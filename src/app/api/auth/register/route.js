@@ -62,7 +62,7 @@ console.log(body)
       password: hashedPassword,
       name,
       role,
-      photo,
+      image: photo,
       createdAt: new Date(),
       updatedAt: new Date(),
     };
@@ -71,13 +71,12 @@ console.log(body)
 
     // ================= CAREGIVER EXTRA DATA =================
     if (role === 'Caregiver') {
-      const caregiverCollection = await dbConnect(collections.CARETAKERS);
+      const caregiverCollection = await dbConnect(collections.caregivers);
 
       const caregiverProfile = {
-        userId: userResult.insertedId,
         name,
         email,
-        photo,
+        image: photo,
         location,
         experience: Number(experience),
         hourlyRate: Number(hourlyRate),

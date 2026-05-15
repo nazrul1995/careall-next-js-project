@@ -8,9 +8,7 @@ export default function BookingCard({profile}) {
   
   const { data: session } = useSession();
   const router = useRouter();
-  const path = usePathname();
-console.log(profile)
-  // Form state
+  const path = usePathname(); 
   const [checkInDate, setCheckInDate] = useState('');
   const [serviceType, setServiceType] = useState('Elderly Companion Care');
   const [startTime, setStartTime] = useState('09:00');
